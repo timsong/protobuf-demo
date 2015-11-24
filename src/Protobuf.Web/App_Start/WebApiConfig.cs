@@ -1,5 +1,6 @@
 ﻿using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
+using Protobuf.Web.Filters;
 using WebApiContrib.Formatting;
 
 namespace Protobuf.Web
@@ -13,6 +14,7 @@ namespace Protobuf.Web
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
             config.Formatters.Add(new ProtoBufFormatter());
+            config.MessageHandlers.Add(new EncodingDelegateHandler());
 
             // Web API routes
             config.MapHttpAttributeRoutes();
